@@ -1,23 +1,31 @@
-'use strict';
+import SwaggerExpress from 'swagger-express-mw';
+import Express from 'express';
+import Cors from 'cors';
+import Http from 'http';
+import dotenv from 'dotenv';
 
-var SwaggerExpress = require('swagger-express-mw');
-var app = require('express')();
-module.exports = app; // for testing
+const app = Express();
+const cors = Cors();
 
-var config = {
+dotenv.config();
+
+app.use(cors);
+
+module.exports = {app}; // for testing
+
+const config = {
   appRoot: __dirname // required config
 };
 
-SwaggerExpress.create(config, function(err, swaggerExpress) {
-  if (err) { throw err; }
-
-  // install middleware
-  swaggerExpress.register(app);
-
-  var port = process.env.PORT || 10010;
-  app.listen(port);
-
-  if (swaggerExpress.runner.swagger.paths['/hello']) {
-    console.log('try this:\ncurl http://127.0.0.1:' + port + '/hello?name=Scott');
+SwaggerExpress.create(config,(err,swaggerExpress)=>{
+  if (err){
+    throw err;
   }
+  swaggerExpress.register(app);
+  try{
+    Http.createServer(app).listen(process.env.port);
+  }catch (e){
+    console.error(e);
+  }
+  console.log(`API running insecurely on Port ${process.env.port}`);
 });
