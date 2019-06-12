@@ -18,55 +18,34 @@ consumes:
 produces:
   - application/json
 paths:
-  /hello:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: hello_world
-    get:
-      description: Returns 'Hello' to the caller
-      # used as the method name of the controller
-      operationId: hello
+  /vote:
+    x-swagger-router-controller: voting
+    post:
+      tags: 
+        - vote
+      summary: Register a vote for a movie
+      operationId: vote
       parameters:
-        - name: name
-          in: query
-          description: The name of the person to whom to say hello
-          required: false
-          type: string
+        - in: body
+          name: voteRequest
+          description: The movie id and email
+          required: true
+          schema:
+            $ref: '#/definitions/VoteRequest'
       responses:
-        "200":
-          description: Success
+        200:
+          description: Ok
           schema:
-            # a pointer to a definition
-            $ref: "#/definitions/HelloWorldResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-  /test:
-    x-swagger-router-controller: test
-    get:
-      description: Returns "hola" to the caller
-      operationId: salute
-      responses:
-        "200":
-          description: Success
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
+            type: string
   /swagger:
     x-swagger-pipe: swagger_raw
-# complex objects have schema definitions
 definitions:
-  HelloWorldResponse:
-    required:
-      - message
-    properties:
-      message:
-        type: string
-  ErrorResponse:
-    required:
-      - message
-    properties:
-      message:
-        type: string
+  VoteRequest:
+      properties:
+        movieId:
+          type: string
+        userEmail:
+          type: string
+          format: email
+  VoteResponse:
+    type: string

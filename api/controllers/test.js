@@ -1,5 +1,8 @@
 
 const salute = (req,res) =>{
-    console.log(req);
-    res.status(200).send("hola");
+    res.json("hello");
 }
+
+module.exports={
+    salute
+};
