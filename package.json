@@ -8,22 +8,29 @@
   "license": "",
   "main": "app.js",
   "dependencies": {
+    "collections": "^5.1.9",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.12.3",
     "swagger-express-mw": "^0.1.0"
   },
   "devDependencies": {
-    "@babel/node": "^7.4.5",
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.4.4",
+    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
-    "nodemon": "^1.19.1",
-    "should": "^13.2.3",
-    "supertest": "^4.0.2"
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.19.1"
   },
   "scripts": {
     "start": "nodemon --exec babel-node app.js",
-    "test": "swagger project test"
+    "test": "mocha --timeout 3000 --recursive --require @babel/polyfill --require @babel/register",
+    "x": "babel-node test/api/services/voting.js",
+    "y": "babel-node api/services/voting.js"
   }
 }
