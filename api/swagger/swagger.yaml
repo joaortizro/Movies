@@ -37,6 +37,7 @@ paths:
           description: Ok
           schema:
             $ref: "#/definitions/VoteResponse"
+        
   /swagger:
     x-swagger-pipe: swagger_raw
 definitions:
