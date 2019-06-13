@@ -1,6 +1,6 @@
 
-const emailStorage = {};
-const movieStorage = {};
+import {emailStorage,movieStorage} from '../repositories/storage';
+
 class VotingService {
 
     constructor (id,email){

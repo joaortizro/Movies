@@ -1,11 +1,8 @@
-import Dictionary from 'collections/_dict'
-
-
-//movieStorage = new Dictionary();
-//emailStorage = new Dictionary();
-emailStorage = {}
+const emailStorage = {};
+const movieStorage = {};
 module.exports = {
     emailStorage,
     movieStorage
 }
+
 

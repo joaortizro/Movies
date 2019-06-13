@@ -10,5 +10,5 @@ const vote = (req,res)=>{
 }
 
 module.exports = {
-    vote
+    vote,
 }
