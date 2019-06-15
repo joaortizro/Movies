@@ -20,6 +20,7 @@ class VotingService {
                 movieStorage[this.id]=1;
                 resolve(true);
             }
+            console.log(movieStorage);
         })
     }
     results(){
